@@ -5,6 +5,10 @@
 package VIEW;
 
 import model.bean.Usuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import model.dao.UsuarioDAO;
+import java.sql.ResultSet;
 
 /**
  *
@@ -30,9 +34,9 @@ public class frmTelaLogin extends javax.swing.JFrame {
 
         btnEntrar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +51,12 @@ public class frmTelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,9 +66,9 @@ public class frmTelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(txtUsuario)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(btnEntrar))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(btnEntrar)
+                    .addComponent(txtSenha))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,16 +91,13 @@ public class frmTelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String nome_usuario, senha_usuario;
-        
-        nome_usuario = txtUsuario.getText();
-        senha_usuario = txtSenha.getText( );
-        
-        Usuario objusuario = new Usuario();
-        objusuario.setNome(nome_usuario);
-        objusuario.setSenha(senha_usuario);
-        
+        Logar();
+
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,7 +138,38 @@ public class frmTelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void Logar() {
+        try {
+
+            String nome_usuario, senha_usuario;
+
+            nome_usuario = txtUsuario.getText();
+            senha_usuario = txtSenha.getText();
+
+            Usuario objusuario = new Usuario();
+            objusuario.setNome(nome_usuario);
+            objusuario.setSenha(senha_usuario);
+
+            UsuarioDAO objusuariodao = new UsuarioDAO();
+            ResultSet rsusuariodao = objusuariodao.autenticarUsu(objusuario);
+
+            if (rsusuariodao.next()) {
+                frmTelaPrincipal objfrmtelaprincipal = new frmTelaPrincipal();
+                objfrmtelaprincipal.setVisible(true);
+
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha não esta certo!!");
+            }
+
+        } catch (SQLException erro) {
+
+            JOptionPane.showMessageDialog(null, "erro no form TelaLogin" + erro);
+        }
+    }
+
 }

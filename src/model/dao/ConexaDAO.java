@@ -1,10 +1,11 @@
+package model.dao;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexaoDAO {
+public class ConexaDAO {
     
     public Connection conectaDB(){
         Connection conn = null;

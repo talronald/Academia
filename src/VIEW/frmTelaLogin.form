@@ -28,9 +28,9 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtUsuario" max="32767" attributes="0"/>
-                  <Component id="txtSenha" alignment="0" pref="200" max="32767" attributes="0"/>
+                  <Component id="txtUsuario" pref="200" max="32767" attributes="0"/>
                   <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
@@ -47,7 +47,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="txtSenha" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
@@ -65,8 +65,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSenha">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
@@ -76,6 +74,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtSenha">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenhaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
