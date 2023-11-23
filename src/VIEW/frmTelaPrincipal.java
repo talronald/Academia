@@ -26,21 +26,70 @@ public class frmTelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_CadastrarAluno = new javax.swing.JButton();
+        btn_CadastrarInstrutor = new javax.swing.JButton();
+        btn_CadastrarFuncionario = new javax.swing.JButton();
+        btn_CadastarVisitante = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_CadastrarAluno.setText("Cadastrar Aluno");
+        btn_CadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastrarAlunoActionPerformed(evt);
+            }
+        });
+
+        btn_CadastrarInstrutor.setText("Cadastrar Instrutor");
+        btn_CadastrarInstrutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastrarInstrutorActionPerformed(evt);
+            }
+        });
+
+        btn_CadastrarFuncionario.setText("Cadastrar Funcionário");
+
+        btn_CadastarVisitante.setText("Cadastrar Visitante");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_CadastrarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_CadastrarInstrutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_CadastrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(btn_CadastarVisitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(btn_CadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_CadastrarInstrutor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_CadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_CadastarVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_CadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarAlunoActionPerformed
+        frmCadastroAluno objfrmcadastroaluno = new frmCadastroAluno();
+        objfrmcadastroaluno.setVisible(true);
+    }//GEN-LAST:event_btn_CadastrarAlunoActionPerformed
+
+    private void btn_CadastrarInstrutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarInstrutorActionPerformed
+        frmCadastroInstrutor objfrmcadastroinstrutor = new frmCadastroInstrutor();
+        objfrmcadastroinstrutor.setVisible(true);
+    }//GEN-LAST:event_btn_CadastrarInstrutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +127,9 @@ public class frmTelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_CadastarVisitante;
+    private javax.swing.JButton btn_CadastrarAluno;
+    private javax.swing.JButton btn_CadastrarFuncionario;
+    private javax.swing.JButton btn_CadastrarInstrutor;
     // End of variables declaration//GEN-END:variables
 }
