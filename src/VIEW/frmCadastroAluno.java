@@ -6,6 +6,10 @@ package VIEW;
 
 import model.bean.Aluno;
 import model.dao.AlunoDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +22,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
      */
     public frmCadastroAluno() {
         initComponents();
+        listarDados();
     }
 
     /**
@@ -45,6 +50,9 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtIdade = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaAluno = new javax.swing.JTable();
+        btnPesquisar = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -73,6 +81,26 @@ public class frmCadastroAluno extends javax.swing.JFrame {
             }
         });
 
+        tabelaAluno.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaAluno);
+
+        btnPesquisar.setText("PESQUISAR");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,32 +110,39 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(146, 146, 146))
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(NOME))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(NOME))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, 87, Short.MAX_VALUE))
-                            .addComponent(txtEndereco)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdade)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox1, 0, 87, Short.MAX_VALUE))
+                                    .addComponent(txtEndereco)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtIdade))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +171,11 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                     .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(btnPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -144,24 +183,28 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nome, CPF, endereco, idade, telefone;
-        
+
         nome = txtNome.getText();
         CPF = txtCPF.getText();
         endereco = txtEndereco.getText();
         telefone = txtTelefone.getText();
         idade = txtIdade.getText();
-        
+
         Aluno objaluno = new Aluno();
         objaluno.setNome_Aluno(nome);
         objaluno.setCPF_Aluno(CPF);
         objaluno.setEndereco_Aluno(endereco);
         objaluno.setIdade_Aluno(idade);
         objaluno.setTelefone_Aluno(telefone);
-        
+
         AlunoDAO objalunodao = new AlunoDAO();
         objalunodao.cadastrarAluno(objaluno);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        listarDados();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +243,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NOME;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -210,10 +254,38 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaAluno;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    private void listarDados() {
+        try {
+            AlunoDAO objalunodao = new AlunoDAO();
+
+            DefaultTableModel model = (DefaultTableModel) tabelaAluno.getModel();
+            model.setNumRows(0);
+
+            ArrayList<Aluno> lista = objalunodao.PesquisarAluno();
+
+            for (int num = 0; num < lista.size(); num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getId_Aluno(),
+                    lista.get(num).getNome_Aluno(),
+                    lista.get(num).getCPF_Aluno(),
+                    lista.get(num).getEndereco_Aluno(),
+                    lista.get(num).getTelefone_Aluno(),
+                    lista.get(num).getIdade_Aluno()
+                });
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está no método listarDados - Aluno" + erro);
+        }
+    }
+
 }
