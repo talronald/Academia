@@ -64,6 +64,27 @@ public class InstrutorDAO {
         return lista;
 
     }
+    
+    public void AlterarInstrutor(Instrutor objinstrutor){
+        String sql = "update instrutor set nome_instrustor = ?, CPF_instrutor = ?, telefone_instrutor = ? , endereco_instrutor = ? where id_Instrutor = ?";
+        
+        conn = new ConexaDAO().conectaDB();
+        
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objinstrutor.getNome_Instrutor());
+            pstm.setString(2, objinstrutor.getCPF_Instrutor());
+            pstm.setString(3, objinstrutor.getTelefone_Instrutor());
+            pstm.setString(4, objinstrutor.getEndereco_Instrutor());
+            pstm.setInt(5, objinstrutor.getId_Instrutor());
+            
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe InstrutorDAO - Alterar" + erro);
+        }
+    }
 
 }
 

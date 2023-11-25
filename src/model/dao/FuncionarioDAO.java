@@ -69,4 +69,26 @@ public class FuncionarioDAO {
 
     }
     
+    public void AlterarFuncionario(Funcionario objfuncionario){
+        String sql = "update funcionario set Nome_Funcionario = ?, CPF_Funcionario = ?, Endereco_Funcionario = ? , Telefone_Funcionario = ?, Funcao_Funcionario = ? where Id_Funcionario = ?";
+        
+        conn = new ConexaDAO().conectaDB();
+        
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objfuncionario.getNome_Funcionario());
+            pstm.setString(2, objfuncionario.getCPF_Funcionario());
+            pstm.setString(3, objfuncionario.getTelefone_Funcionario());
+            pstm.setString(4, objfuncionario.getEndereco_Funcionario());
+            pstm.setString(5, objfuncionario.getFuncao_Funcionario());
+            pstm.setInt(6, objfuncionario.getId_Funcionario());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe FuncionarioDAO - Alterar" + erro);
+        }
+    }
+    
 }

@@ -32,7 +32,7 @@ public class VisitanteDAO {
             pstm.execute();
             pstm.close();
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO" + erro);
+            JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO - Cadastrar" + erro);
         }
     
     }
@@ -49,7 +49,7 @@ public class VisitanteDAO {
             while (rs.next()) {
                 Visitante objvisitante = new Visitante();
                 objvisitante.setId_Visitante(rs.getInt("Id_Visitante"));
-                objvisitante.setNome_Visitante(rs.getString("Id_Visitante"));
+                objvisitante.setNome_Visitante(rs.getString("nome_visitante"));
                 objvisitante.setCPF_Visitante(rs.getString("CPF_Visitante"));
                 objvisitante.setTelefone_Visitante(rs.getString("Telefone_Visitante"));
                 
@@ -64,6 +64,26 @@ public class VisitanteDAO {
 
         return lista;
 
+    }
+    
+    public void AlterarVisitante(Visitante objvisitante){
+        String sql = "update visitante set nome_visitante = ?, CPF_visitante = ?, telefone_visitante = ? where Id_Visitante = ?";
+        
+        conn = new ConexaDAO().conectaDB();
+        
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objvisitante.getNome_Visitante());
+            pstm.setString(2, objvisitante.getCPF_Visitante());
+            pstm.setString(3, objvisitante.getTelefone_Visitante());
+            pstm.setInt(4, objvisitante.getId_Visitante());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO - Alterar" + erro);
+        }
     }
     
 }

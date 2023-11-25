@@ -54,6 +54,9 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         tabelaAluno = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
         btnCarregar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -109,12 +112,27 @@ public class frmCadastroAluno extends javax.swing.JFrame {
             }
         });
 
+        btnAlterar.setText("ALTERAR");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("ID");
+
+        txtCodigo.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(146, 146, 146))
             .addGroup(layout.createSequentialGroup()
@@ -146,9 +164,12 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                                             .addComponent(jLabel6)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtIdade))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnAlterar)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -158,7 +179,10 @@ public class frmCadastroAluno extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,8 +205,10 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                     .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnCadastrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(btnPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnAlterar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,7 +223,6 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         cadastrar();
         listarDados();
         LimparCampos();
-
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -207,6 +232,12 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     private void btnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarActionPerformed
         CarregarDados();
     }//GEN-LAST:event_btnCarregarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        AlterarDados();
+        listarDados();
+        LimparCampos();
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +276,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NOME;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregar;
     private javax.swing.JButton btnPesquisar;
@@ -256,10 +288,12 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaAluno;
     private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNome;
@@ -316,6 +350,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
         int setar = tabelaAluno.getSelectedRow();
 
+        txtCodigo.setText(tabelaAluno.getModel().getValueAt(setar, 0).toString());
         txtNome.setText(tabelaAluno.getModel().getValueAt(setar, 1).toString());
         txtCPF.setText(tabelaAluno.getModel().getValueAt(setar, 2).toString());
         txtEndereco.setText(tabelaAluno.getModel().getValueAt(setar, 3).toString());
@@ -332,6 +367,29 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         txtTelefone.setText("");
         txtIdade.setText("");
         txtNome.requestFocus();
+    }
+
+    private void AlterarDados() {
+        int id_aluno;
+        String nome, CPF, Endereco, Telefone, Idade;
+
+        id_aluno = Integer.parseInt(txtCodigo.getText());
+        nome = txtNome.getText();
+        CPF = txtCPF.getText();
+        Endereco = txtEndereco.getText();
+        Telefone = txtTelefone.getText();
+        Idade = txtTelefone.getText();
+
+        Aluno objaluno = new Aluno();
+        objaluno.setId_Aluno(id_aluno);
+        objaluno.setNome_Aluno(nome);
+        objaluno.setCPF_Aluno(CPF);
+        objaluno.setEndereco_Aluno(Endereco);
+        objaluno.setTelefone_Aluno(Telefone);
+        objaluno.setIdade_Aluno(Idade);
+
+        AlunoDAO objalunodao = new AlunoDAO();
+        objalunodao.AlterarAluno(objaluno);
     }
 
 }

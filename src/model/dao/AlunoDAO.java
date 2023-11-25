@@ -67,5 +67,27 @@ public class AlunoDAO {
         return lista;
 
     }
+    
+    public void AlterarAluno(Aluno objaluno){
+        String sql = "update aluno set nome_aluno = ?, CPF = ?, endereco = ? , telefone = ?, idade =? where id_aluno = ?";
+        
+        conn = new ConexaDAO().conectaDB();
+        
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objaluno.getNome_Aluno());
+            pstm.setString(2, objaluno.getCPF_Aluno());
+            pstm.setString(3, objaluno.getEndereco_Aluno());
+            pstm.setString(4, objaluno.getTelefone_Aluno());
+            pstm.setString(5, objaluno.getIdade_Aluno());
+            pstm.setInt(6, objaluno.getId_Aluno());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Alterar" + erro);
+        }
+    }
 
 }
