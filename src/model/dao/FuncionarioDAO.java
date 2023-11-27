@@ -1,4 +1,3 @@
-
 package model.dao;
 
 import model.bean.Funcionario;
@@ -10,9 +9,9 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 
 public class FuncionarioDAO {
-    
+
     Connection conn;
-    PreparedStatement pstm;    
+    PreparedStatement pstm;
     ResultSet rs;
     ArrayList<Funcionario> lista = new ArrayList<>();
 
@@ -36,9 +35,9 @@ public class FuncionarioDAO {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "O erro está na classe FuncionarioDAO" + erro);
         }
-    
+
     }
-    
+
     public ArrayList<Funcionario> PesquisarFuncionario() {
 
         String sql = "select * from funcionario";
@@ -68,12 +67,12 @@ public class FuncionarioDAO {
         return lista;
 
     }
-    
-    public void AlterarFuncionario(Funcionario objfuncionario){
+
+    public void AlterarFuncionario(Funcionario objfuncionario) {
         String sql = "update funcionario set Nome_Funcionario = ?, CPF_Funcionario = ?, Endereco_Funcionario = ? , Telefone_Funcionario = ?, Funcao_Funcionario = ? where Id_Funcionario = ?";
-        
+
         conn = new ConexaDAO().conectaDB();
-        
+
         try {
 
             pstm = conn.prepareStatement(sql);
@@ -90,5 +89,24 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "O erro está na classe FuncionarioDAO - Alterar" + erro);
         }
     }
-    
+
+    public void ExcluirFuncionario(Funcionario objfuncionario) {
+
+        String sql = "delete from funcionario where Id_Funcionario = ?";
+
+        conn = new ConexaDAO().conectaDB();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, objfuncionario.getId_Funcionario());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe FuncionarioDAO - Excluir" + erro);
+        }
+
+    }
+
 }

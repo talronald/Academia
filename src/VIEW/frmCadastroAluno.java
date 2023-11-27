@@ -57,6 +57,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        btnExcluir = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -123,6 +124,13 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
         txtCodigo.setEnabled(false);
 
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,6 +173,8 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtIdade))))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnExcluir)
+                                    .addGap(18, 18, 18)
                                     .addComponent(btnAlterar)
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -208,7 +218,8 @@ public class frmCadastroAluno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -238,6 +249,12 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         listarDados();
         LimparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Excluir();
+        listarDados();
+        LimparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +296,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -392,4 +410,18 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         objalunodao.AlterarAluno(objaluno);
     }
 
+    private void Excluir(){
+        
+        int id_aluno;
+
+        id_aluno = Integer.parseInt(txtCodigo.getText());
+        
+        Aluno objaluno = new Aluno();
+        objaluno.setId_Aluno(id_aluno);
+        
+        AlunoDAO objalunodao = new AlunoDAO();
+        objalunodao.ExcluirAluno(objaluno);
+    
+    }
+    
 }

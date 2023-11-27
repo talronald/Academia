@@ -89,5 +89,24 @@ public class AlunoDAO {
             JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Alterar" + erro);
         }
     }
+    
+    public void ExcluirAluno(Aluno objaluno){
+        
+        String sql = "delete from aluno where id_Aluno = ?";
+        
+        conn = new ConexaDAO().conectaDB();
+        
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, objaluno.getId_Aluno());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Excluir" + erro);
+        }
+    
+    }
 
 }

@@ -48,6 +48,7 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +105,13 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
             }
         });
 
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,6 +140,8 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
                                             .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(btnExcluir)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(btnAlterar)))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -173,7 +183,8 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,6 +214,12 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
         LimparCampos();
         listarDados();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+       Excluir();
+       listarDados();
+       LimparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,6 +260,7 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -332,6 +350,20 @@ public class frmCadastrarVisitante extends javax.swing.JFrame {
 
         VisitanteDAO objvisitantedao = new VisitanteDAO();
         objvisitantedao.AlterarVisitante(objvisitante);
+    }
+    
+    private void Excluir(){
+        
+        int id_visitante;
+
+        id_visitante = Integer.parseInt(txtCodigo.getText());
+        
+        Visitante objvisitante = new Visitante();
+        objvisitante.setId_Visitante(id_visitante);
+        
+        VisitanteDAO objvisitantedao = new VisitanteDAO();
+        objvisitantedao.ExcluirVisitante(objvisitante);
+    
     }
 
 }

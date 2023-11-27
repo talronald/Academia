@@ -52,6 +52,7 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +113,13 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +149,10 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
                                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel4))
-                                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnExcluir)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +202,8 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -221,6 +233,12 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
         listarDados();
         LimparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Excluir();
+        listarDados();
+        LimparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,6 +279,7 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -368,5 +387,19 @@ public class frmCadastroFuncionario extends javax.swing.JFrame {
 
         FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
         objfuncionariodao.AlterarFuncionario(objfuncionario);
+    }
+    
+    private void Excluir(){
+        
+        int id_funcionario;
+
+        id_funcionario= Integer.parseInt(txtCodigo.getText());
+        
+        Funcionario objfuncionario = new Funcionario();
+        objfuncionario.setId_Funcionario(id_funcionario);
+        
+        FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
+        objfuncionariodao.ExcluirFuncionario(objfuncionario);
+    
     }
 }

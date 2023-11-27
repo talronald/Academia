@@ -1,4 +1,3 @@
-
 package model.dao;
 
 import model.bean.Visitante;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 
 public class VisitanteDAO {
-    
+
     Connection conn;
     PreparedStatement pstm;
     ResultSet rs;
@@ -34,9 +33,9 @@ public class VisitanteDAO {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO - Cadastrar" + erro);
         }
-    
+
     }
-    
+
     public ArrayList<Visitante> PesquisarVisitante() {
 
         String sql = "select * from visitante";
@@ -52,7 +51,6 @@ public class VisitanteDAO {
                 objvisitante.setNome_Visitante(rs.getString("nome_visitante"));
                 objvisitante.setCPF_Visitante(rs.getString("CPF_Visitante"));
                 objvisitante.setTelefone_Visitante(rs.getString("Telefone_Visitante"));
-                
 
                 lista.add(objvisitante);
 
@@ -65,12 +63,12 @@ public class VisitanteDAO {
         return lista;
 
     }
-    
-    public void AlterarVisitante(Visitante objvisitante){
+
+    public void AlterarVisitante(Visitante objvisitante) {
         String sql = "update visitante set nome_visitante = ?, CPF_visitante = ?, telefone_visitante = ? where Id_Visitante = ?";
-        
+
         conn = new ConexaDAO().conectaDB();
-        
+
         try {
 
             pstm = conn.prepareStatement(sql);
@@ -85,5 +83,24 @@ public class VisitanteDAO {
             JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO - Alterar" + erro);
         }
     }
-    
+
+    public void ExcluirVisitante(Visitante objvisitante) {
+
+        String sql = "delete from visitante where Id_Visitante = ?";
+
+        conn = new ConexaDAO().conectaDB();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, objvisitante.getId_Visitante());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe VisitanteDAO - Excluir" + erro);
+        }
+
+    }
+
 }
