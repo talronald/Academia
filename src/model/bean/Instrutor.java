@@ -5,6 +5,7 @@ package model.bean;
 public class Instrutor {
     
     private String Nome_Instrutor, CPF_Instrutor, Telefone_Instrutor, Endereco_Instrutor;
+    private int id_Instrutor;
 
     /**
      * @return the Nome_Instrutor
@@ -60,6 +61,20 @@ public class Instrutor {
      */
     public void setEndereco_Instrutor(String Endereco_Instrutor) {
         this.Endereco_Instrutor = Endereco_Instrutor;
+    }
+
+    /**
+     * @return the id_Instrutor
+     */
+    public int getId_Instrutor() {
+        return id_Instrutor;
+    }
+
+    /**
+     * @param id_Instrutor the id_Instrutor to set
+     */
+    public void setId_Instrutor(int id_Instrutor) {
+        this.id_Instrutor = id_Instrutor;
     }
 
    

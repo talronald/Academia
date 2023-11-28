@@ -5,6 +5,7 @@ package model.bean;
 public class Visitante {
     
     private String Nome_Visitante, CPF_Visitante, Telefone_Visitante;
+    private int id_Visitante;
 
     /**
      * @return the Nome_Visitante
@@ -46,6 +47,20 @@ public class Visitante {
      */
     public void setTelefone_Visitante(String Telefone_Visitante) {
         this.Telefone_Visitante = Telefone_Visitante;
+    }
+
+    /**
+     * @return the id_Visitante
+     */
+    public int getId_Visitante() {
+        return id_Visitante;
+    }
+
+    /**
+     * @param id_Visitante the id_Visitante to set
+     */
+    public void setId_Visitante(int id_Visitante) {
+        this.id_Visitante = id_Visitante;
     }
     
 }

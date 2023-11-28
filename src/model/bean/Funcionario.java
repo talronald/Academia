@@ -5,7 +5,7 @@ package model.bean;
 public class Funcionario {
     
     private String Nome_Funcionario, CPF_Funcionario, Endereco_Funcionario, Telefone_Funcionario, Funcao_Funcionario;
-
+    private int id_Funcionario;
     /**
      * @return the Nome_Funcionario
      */
@@ -74,6 +74,20 @@ public class Funcionario {
      */
     public void setFuncao_Funcionario(String Funcao_Funcionario) {
         this.Funcao_Funcionario = Funcao_Funcionario;
+    }
+
+    /**
+     * @return the id_Funcionario
+     */
+    public int getId_Funcionario() {
+        return id_Funcionario;
+    }
+
+    /**
+     * @param id_Funcionario the id_Funcionario to set
+     */
+    public void setId_Funcionario(int id_Funcionario) {
+        this.id_Funcionario = id_Funcionario;
     }
 
     
