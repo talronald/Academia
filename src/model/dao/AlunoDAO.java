@@ -67,12 +67,12 @@ public class AlunoDAO {
         return lista;
 
     }
-    
-    public void AlterarAluno(Aluno objaluno){
+
+    public void AlterarAluno(Aluno objaluno) {
         String sql = "update aluno set nome_aluno = ?, CPF = ?, endereco = ? , telefone = ?, idade =? where id_aluno = ?";
-        
+
         conn = new ConexaDAO().conectaDB();
-        
+
         try {
 
             pstm = conn.prepareStatement(sql);
@@ -89,13 +89,13 @@ public class AlunoDAO {
             JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Alterar" + erro);
         }
     }
-    
-    public void ExcluirAluno(Aluno objaluno){
-        
+
+    public void ExcluirAluno(Aluno objaluno) {
+
         String sql = "delete from aluno where id_Aluno = ?";
-        
+
         conn = new ConexaDAO().conectaDB();
-        
+
         try {
 
             pstm = conn.prepareStatement(sql);
@@ -106,7 +106,21 @@ public class AlunoDAO {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Excluir" + erro);
         }
-    
+
     }
 
+    public ResultSet PlanoAluno() {
+
+        conn = new ConexaDAO().conectaDB();
+        String sql = "select * from plano order by id_plano;";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            return pstm.executeQuery();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Plano" + erro);
+        }
+
+    }
 }

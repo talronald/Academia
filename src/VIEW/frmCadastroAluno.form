@@ -63,7 +63,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" pref="87" max="32767" attributes="0"/>
+                                          <Component id="cbxPlano" pref="87" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="txtEndereco" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
@@ -116,7 +116,7 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbxPlano" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -172,14 +172,14 @@
         <Property name="text" type="java.lang.String" value="PLANO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="cbxPlano">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="Selecione"/>
+            <StringItem index="1" value="Comum - R$ 45,00"/>
+            <StringItem index="2" value="Intermedi&#xe1;rio - R$ 75,00"/>
+            <StringItem index="3" value="Premium - R$ 105,00"/>
           </StringArray>
         </Property>
       </Properties>
