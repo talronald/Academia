@@ -3,16 +3,9 @@ package model.bean;
 
 public class Aluno {
     
-    private String Nome_Aluno, Idade_Aluno, CPF_Aluno, Telefone_Aluno, Plano_Aluno, Endereco_Aluno;
-    private int id_Aluno, cod_Plano;
+    private String Nome_Aluno, Idade_Aluno, CPF_Aluno, Telefone_Aluno, Endereco_Aluno;
+    private int id_Aluno;
 
-    public int getCod_Plano() {
-        return cod_Plano;
-    }
-
-    public void setCod_Plano(int cod_Plano) {
-        this.cod_Plano = cod_Plano;
-    }
 
     /**
      * @return the Nome_Aluno
@@ -68,20 +61,6 @@ public class Aluno {
      */
     public void setTelefone_Aluno(String Telefone_Aluno) {
         this.Telefone_Aluno = Telefone_Aluno;
-    }
-
-    /**
-     * @return the Plano_Aluno
-     */
-    public String getPlano_Aluno() {
-        return Plano_Aluno;
-    }
-
-    /**
-     * @param Plano_Aluno the Plano_Aluno to set
-     */
-    public void setPlano_Aluno(String Plano_Aluno) {
-        this.Plano_Aluno = Plano_Aluno;
     }
 
     /**
