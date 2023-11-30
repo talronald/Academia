@@ -78,11 +78,28 @@ public class frmTelaLogin extends javax.swing.JFrame {
         txtUsuario.setBackground(new java.awt.Color(186, 79, 84));
         txtUsuario.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtUsuario.setText("Username");
+        txtUsuario.setToolTipText("");
         txtUsuario.setBorder(null);
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+        });
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUsuarioMouseClicked(evt);
+            }
+        });
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         txtSenha.setBackground(new java.awt.Color(186, 79, 84));
         txtSenha.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtSenha.setText("Password");
+        txtSenha.setText("        ");
+        txtSenha.setToolTipText("");
         txtSenha.setBorder(null);
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +144,6 @@ public class frmTelaLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("X");
-        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -160,7 +176,6 @@ public class frmTelaLogin extends javax.swing.JFrame {
                                             .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(257, 257, 257))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(245, 245, 245))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -239,6 +254,19 @@ public class frmTelaLogin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void txtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseClicked
+        
+        
+    }//GEN-LAST:event_txtUsuarioMouseClicked
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+       
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -290,19 +318,19 @@ public class frmTelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+    String nome_usuario, senha_usuario;
+    Usuario objusuario = new Usuario();
+    
+    
     private void Logar() {
         try {
-
-            String nome_usuario, senha_usuario;
-
+            
             nome_usuario = txtUsuario.getText();
             senha_usuario = txtSenha.getText();
-
-            Usuario objusuario = new Usuario();
+           
+            UsuarioDAO objusuariodao = new UsuarioDAO();
             objusuario.setNome(nome_usuario);
             objusuario.setSenha(senha_usuario);
-
-            UsuarioDAO objusuariodao = new UsuarioDAO();
             ResultSet rsusuariodao = objusuariodao.autenticarUsu(objusuario);
 
             if (rsusuariodao.next()) {
@@ -319,5 +347,7 @@ public class frmTelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "erro no form TelaLogin" + erro);
         }
     }
+    
+   
 
 }

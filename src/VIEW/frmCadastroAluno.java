@@ -4,12 +4,15 @@
  */
 package VIEW;
 
+import com.mysql.cj.protocol.Resultset;
 import model.bean.Aluno;
 import model.dao.AlunoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
 
 /**
  *
@@ -23,6 +26,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     public frmCadastroAluno() {
         initComponents();
         listarDados();
+        RestaurarPlanosCombobox();
     }
 
     /**
@@ -71,7 +75,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
 
         jLabel3.setText("PLANO");
 
-        cbxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Comum - R$ 45,00", "Intermediário - R$ 75,00", "Premium - R$ 105,00" }));
+        cbxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", " " }));
 
         jLabel4.setText("ENDEREÇO");
 
@@ -321,12 +325,14 @@ public class frmCadastroAluno extends javax.swing.JFrame {
     private void cadastrar() {
 
         String nome, CPF, endereco, idade, telefone;
+        int codPlano;
 
         nome = txtNome.getText();
         CPF = txtCPF.getText();
         endereco = txtEndereco.getText();
         telefone = txtTelefone.getText();
         idade = txtIdade.getText();
+        codPlano = id_plano.get(cbxPlano.getSelectedIndex() - 1);
 
         Aluno objaluno = new Aluno();
         objaluno.setNome_Aluno(nome);
@@ -334,6 +340,7 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         objaluno.setEndereco_Aluno(endereco);
         objaluno.setIdade_Aluno(idade);
         objaluno.setTelefone_Aluno(telefone);
+        objaluno.setCod_Plano(codPlano);
 
         AlunoDAO objalunodao = new AlunoDAO();
         objalunodao.cadastrarAluno(objaluno);
@@ -410,18 +417,36 @@ public class frmCadastroAluno extends javax.swing.JFrame {
         objalunodao.AlterarAluno(objaluno);
     }
 
-    private void Excluir(){
-        
+    private void Excluir() {
+
         int id_aluno;
 
         id_aluno = Integer.parseInt(txtCodigo.getText());
-        
+
         Aluno objaluno = new Aluno();
         objaluno.setId_Aluno(id_aluno);
-        
+
         AlunoDAO objalunodao = new AlunoDAO();
         objalunodao.ExcluirAluno(objaluno);
-    
+
     }
-    
+
+    Vector<Integer> id_plano = new Vector<Integer>();
+
+    private void RestaurarPlanosCombobox() {
+
+        try {
+            AlunoDAO objAlunoDao = new AlunoDAO();
+            ResultSet rs = objAlunoDao.PlanoAluno();
+
+            while (rs.next()) {
+                id_plano.addElement(rs.getInt(1));
+                cbxPlano.addItem(rs.getString(2));
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Carregar planos View" + erro);
+        }
+
+    }
+
 }

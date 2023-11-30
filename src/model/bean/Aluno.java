@@ -4,7 +4,15 @@ package model.bean;
 public class Aluno {
     
     private String Nome_Aluno, Idade_Aluno, CPF_Aluno, Telefone_Aluno, Plano_Aluno, Endereco_Aluno;
-    private int id_Aluno;
+    private int id_Aluno, cod_Plano;
+
+    public int getCod_Plano() {
+        return cod_Plano;
+    }
+
+    public void setCod_Plano(int cod_Plano) {
+        this.cod_Plano = cod_Plano;
+    }
 
     /**
      * @return the Nome_Aluno

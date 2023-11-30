@@ -175,11 +175,9 @@
     <Component class="javax.swing.JComboBox" name="cbxPlano">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="2">
             <StringItem index="0" value="Selecione"/>
-            <StringItem index="1" value="Comum - R$ 45,00"/>
-            <StringItem index="2" value="Intermedi&#xe1;rio - R$ 75,00"/>
-            <StringItem index="3" value="Premium - R$ 105,00"/>
+            <StringItem index="1" value=" "/>
           </StringArray>
         </Property>
       </Properties>
