@@ -16,7 +16,7 @@ public class AlunoDAO {
     ArrayList<Aluno> lista = new ArrayList<>();
 
     public void cadastrarAluno(Aluno objaluno) {
-        String sql = "insert into aluno (id_aluno, nome_aluno, CPF, endereco, telefone, idade, cod_plano) values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into aluno (id_aluno, nome_aluno, CPF, endereco, telefone, idade) values (?, ?, ?, ?, ?, ?)";
 
         conn = new ConexaDAO().conectaDB();
 
@@ -29,7 +29,6 @@ public class AlunoDAO {
             pstm.setString(4, objaluno.getEndereco_Aluno());
             pstm.setString(5, objaluno.getTelefone_Aluno());
             pstm.setString(6, objaluno.getIdade_Aluno());
-            pstm.setInt(7, objaluno.getCod_Plano());
 
             pstm.execute();
             pstm.close();
@@ -107,23 +106,6 @@ public class AlunoDAO {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Excluir" + erro);
         }
-
-    }
-
-    public ResultSet PlanoAluno() {
-
-        conn = new ConexaDAO().conectaDB();
-        String sql = "select * from plano order by id_plano;";
-
-        try {
-            pstm = conn.prepareStatement(sql);
-            return pstm.executeQuery();
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "O erro está na classe AlunoDAO - Plano" + erro);
-            return null;
-        }
-        
 
     }
 }

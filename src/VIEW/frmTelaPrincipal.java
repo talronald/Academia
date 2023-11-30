@@ -85,11 +85,21 @@ public class frmTelaPrincipal extends javax.swing.JFrame {
         btn_CadastrarFuncionario.setText("Cadastrar Funcionário");
         btn_CadastrarFuncionario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         btn_CadastrarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_CadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastrarFuncionarioActionPerformed(evt);
+            }
+        });
 
         btn_CadastarVisitante.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btn_CadastarVisitante.setText("Cadastrar Visitante");
         btn_CadastarVisitante.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
         btn_CadastarVisitante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_CadastarVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CadastarVisitanteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +157,16 @@ public class frmTelaPrincipal extends javax.swing.JFrame {
         frmCadastroInstrutor objfrmcadastroinstrutor = new frmCadastroInstrutor();
         objfrmcadastroinstrutor.setVisible(true);
     }//GEN-LAST:event_btn_CadastrarInstrutorActionPerformed
+
+    private void btn_CadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarFuncionarioActionPerformed
+        frmCadastroFuncionario objfrmcadastrarfuncionario = new frmCadastroFuncionario();
+        objfrmcadastrarfuncionario.setVisible(true);
+    }//GEN-LAST:event_btn_CadastrarFuncionarioActionPerformed
+
+    private void btn_CadastarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastarVisitanteActionPerformed
+        frmCadastrarVisitante objfrmcadastarvisitante = new frmCadastrarVisitante();
+        objfrmcadastarvisitante.setVisible(true);
+    }//GEN-LAST:event_btn_CadastarVisitanteActionPerformed
 
     /**
      * @param args the command line arguments
