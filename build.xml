@@ -70,4 +70,13 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <path id="test.classpath">
+        <pathelement location="build/test/classes"/>
+        <!-- Adicione a linha abaixo -->
+        <pathelement location="${user.home}/.m2/repository/junit/junit/5.6.0/junit-5.6.0.jar"/>
+        <!-- Outros elementos do classpath podem estar presentes aqui -->
+    </path>
+
+
+    
 </project>
